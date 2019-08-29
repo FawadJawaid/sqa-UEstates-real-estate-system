@@ -1,0 +1,867 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package UserInterfaceLayer;
+
+import BusinessLogicLayer.Area;
+import BusinessLogicLayer.Block;
+import BusinessLogicLayer.DataManager;
+import BusinessLogicLayer.PropertyCharacteristic;
+import BusinessLogicLayer.PropertyManager;
+import BusinessLogicLayer.PropertyService;
+import BusinessLogicLayer.PropertyType;
+import BusinessLogicLayer.Validations;
+import java.awt.Color;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author arsalan
+ */
+public class UpdatePropertySubDetails extends javax.swing.JPanel {
+
+    private Validations validation;
+    private PropertyManager propertyManager;
+    private ArrayList<Area> areaList;
+    private ArrayList<Block> blockList;
+    private ArrayList<PropertyType> typeList;
+    private ArrayList<PropertyCharacteristic> characteristicList;
+    private ArrayList<PropertyService> sercviceList;
+    private DialogBox dialog;
+
+    /**
+     * Creates new form UpdatePropertySubDetails
+     */
+    public UpdatePropertySubDetails() {
+        initComponents();
+        validation = new Validations();
+        propertyManager = DataManager.getInstance().getPropertyManager();
+        dialog = new DialogBox();
+        configureUI();
+        fillAllDropDownValues();
+    }
+
+    private void configureUI() {
+        lblAreaError.setVisible(false);
+        lblBlockError.setVisible(false);
+        lblCharacteristicError.setVisible(false);
+        lblPropertyError.setVisible(false);
+        lblServiceError.setVisible(false);
+    }
+
+    private void showAreaLabel(String text, int mode) {
+        lblAreaError.setText(text);
+        lblAreaError.setForeground((mode == 0) ? Color.red : Color.black);
+        lblAreaError.setVisible(true);
+    }
+
+    private void showBlockLabel(String text, int mode) {
+        lblBlockError.setText(text);
+        lblBlockError.setForeground((mode == 0) ? Color.red : Color.black);
+        lblBlockError.setVisible(true);
+    }
+
+    private void showCharacteristicLabel(String text, int mode) {
+        lblCharacteristicError.setText(text);
+        lblCharacteristicError.setForeground((mode == 0) ? Color.red : Color.black);
+        lblCharacteristicError.setVisible(true);
+    }
+
+    private void showPropertyLabel(String text, int mode) {
+        lblPropertyError.setText(text);
+        lblPropertyError.setForeground((mode == 0) ? Color.red : Color.black);
+        lblPropertyError.setVisible(true);
+    }
+
+    private void showServiceLabel(String text, int mode) {
+        lblServiceError.setText(text);
+        lblServiceError.setForeground((mode == 0) ? Color.red : Color.black);
+        lblServiceError.setVisible(true);
+    }
+
+    private void disableBlockPortion() {
+        txtBlock.setEnabled(false);
+        btnUpdateBlock.setEnabled(false);
+        spinLoadShed.setEnabled(false);
+        spinPrice.setEnabled(false);
+        showBlockLabel("No Area Found", 0);
+    }
+
+    private void enableBlockPortion() {
+        txtBlock.setEnabled(true);
+        btnUpdateBlock.setEnabled(true);
+        spinLoadShed.setEnabled(true);
+        spinPrice.setEnabled(true);
+        showBlockLabel("", 0);
+    }
+
+    private void disableAreaPortion() {
+        txtArea.setEnabled(false);
+        btnUpdateArea.setEnabled(false);
+        showAreaLabel("No Area Found", 0);
+    }
+
+    private void enableAreaPortion() {
+        txtArea.setEnabled(true);
+        btnUpdateArea.setEnabled(true);
+        showAreaLabel("", 0);
+    }
+
+    private void disableCharacteristicPortion() {
+        txtCharacteristic.setEnabled(false);
+        btnUpdateCharacteristic.setEnabled(false);
+        showCharacteristicLabel("No Characteristic Found", 0);
+    }
+
+    private void enableCharacteristicPortion() {
+        txtCharacteristic.setEnabled(true);
+        btnUpdateCharacteristic.setEnabled(true);
+        showCharacteristicLabel("", 0);
+    }
+
+    private void disableTypePortion() {
+        txtPropertyType.setEnabled(false);
+        btnUpdatePropertyType.setEnabled(false);
+        showPropertyLabel("No Property Types Found", 0);
+    }
+
+    private void enableTypePortion() {
+        txtPropertyType.setEnabled(true);
+        btnUpdatePropertyType.setEnabled(true);
+        showPropertyLabel("", 0);
+    }
+
+    private void disableServicePortion() {
+        txtService.setEnabled(false);
+        btnUpdateService.setEnabled(false);
+        showServiceLabel("No Property Services Found", 0);
+    }
+
+    private void enableServicePortion() {
+        txtService.setEnabled(true);
+        btnUpdateService.setEnabled(true);
+        showServiceLabel("", 0);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel10 = new javax.swing.JPanel();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtService = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtArea = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtPropertyType = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        btnUpdatePropertyType = new javax.swing.JButton();
+        lblPropertyError = new javax.swing.JLabel();
+        txtCharacteristic = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtBlock = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        cmbAreaForBlock = new javax.swing.JComboBox();
+        jLabel17 = new javax.swing.JLabel();
+        lblBlockError = new javax.swing.JLabel();
+        btnUpdateBlock = new javax.swing.JButton();
+        btnUpdateService = new javax.swing.JButton();
+        lblServiceError = new javax.swing.JLabel();
+        btnUpdateCharacteristic = new javax.swing.JButton();
+        btnUpdateArea = new javax.swing.JButton();
+        lblCharacteristicError = new javax.swing.JLabel();
+        lblAreaError = new javax.swing.JLabel();
+        cmbCharacteristics = new javax.swing.JComboBox();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        cmbServices = new javax.swing.JComboBox();
+        cmbPropertyType = new javax.swing.JComboBox();
+        jLabel19 = new javax.swing.JLabel();
+        cmbArea = new javax.swing.JComboBox();
+        jLabel20 = new javax.swing.JLabel();
+        cmbBlock = new javax.swing.JComboBox();
+        jLabel21 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        spinPrice = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
+        spinLoadShed = new javax.swing.JSpinner();
+
+        jPanel10.setLayout(null);
+
+        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel59.setText("UPDATE PROPERTY DETAILS");
+        jPanel10.add(jLabel59);
+        jLabel59.setBounds(380, 0, 340, 50);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Property Characteristic");
+        jPanel10.add(jLabel1);
+        jLabel1.setBounds(10, 60, 150, 30);
+
+        txtService.setToolTipText("Enter Service Name");
+        txtService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtServiceActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtService);
+        txtService.setBounds(180, 270, 300, 30);
+
+        jLabel4.setText("New Service Name");
+        jPanel10.add(jLabel4);
+        jLabel4.setBounds(60, 270, 120, 30);
+
+        txtArea.setToolTipText("Enter Area Name");
+        txtArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAreaActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtArea);
+        txtArea.setBounds(640, 120, 310, 30);
+
+        jLabel6.setText("New Area Name");
+        jPanel10.add(jLabel6);
+        jLabel6.setBounds(540, 120, 100, 30);
+
+        txtPropertyType.setToolTipText("Enter Property Type");
+        txtPropertyType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPropertyTypeActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtPropertyType);
+        txtPropertyType.setBounds(180, 420, 300, 30);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setText("Property Type");
+        jPanel10.add(jLabel8);
+        jLabel8.setBounds(10, 360, 140, 30);
+
+        btnUpdatePropertyType.setText("Update Property Type");
+        btnUpdatePropertyType.setToolTipText("Update Property Type");
+        btnUpdatePropertyType.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdatePropertyType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdatePropertyTypeActionPerformed(evt);
+            }
+        });
+        jPanel10.add(btnUpdatePropertyType);
+        btnUpdatePropertyType.setBounds(220, 460, 220, 30);
+
+        lblPropertyError.setForeground(new java.awt.Color(102, 102, 0));
+        lblPropertyError.setText("Property Type Already Exist");
+        jPanel10.add(lblPropertyError);
+        lblPropertyError.setBounds(170, 360, 170, 30);
+
+        txtCharacteristic.setToolTipText("Enter Characteristic Name");
+        txtCharacteristic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCharacteristicActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtCharacteristic);
+        txtCharacteristic.setBounds(180, 120, 300, 30);
+
+        jLabel10.setText("Select Characteristic");
+        jPanel10.add(jLabel10);
+        jLabel10.setBounds(60, 90, 120, 30);
+
+        txtBlock.setToolTipText("Enter Block Name");
+        txtBlock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBlockActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtBlock);
+        txtBlock.setBounds(650, 300, 300, 30);
+
+        jLabel12.setText("New Block Name");
+        jPanel10.add(jLabel12);
+        jLabel12.setBounds(550, 300, 100, 30);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel13.setText("Services");
+        jPanel10.add(jLabel13);
+        jLabel13.setBounds(10, 210, 70, 30);
+
+        jLabel14.setText("New Property Type");
+        jPanel10.add(jLabel14);
+        jLabel14.setBounds(70, 420, 110, 30);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setText("Area Details");
+        jPanel10.add(jLabel15);
+        jLabel15.setBounds(540, 60, 100, 30);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel16.setText("Block Details");
+        jPanel10.add(jLabel16);
+        jLabel16.setBounds(540, 210, 90, 30);
+
+        cmbAreaForBlock.setToolTipText("Select Area");
+        cmbAreaForBlock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAreaForBlockActionPerformed(evt);
+            }
+        });
+        jPanel10.add(cmbAreaForBlock);
+        cmbAreaForBlock.setBounds(650, 240, 300, 30);
+
+        jLabel17.setText("Select Area");
+        jPanel10.add(jLabel17);
+        jLabel17.setBounds(570, 240, 70, 30);
+
+        lblBlockError.setForeground(new java.awt.Color(102, 102, 0));
+        lblBlockError.setText("Block Already Exist");
+        jPanel10.add(lblBlockError);
+        lblBlockError.setBounds(650, 210, 200, 30);
+
+        btnUpdateBlock.setText("Update Block Name");
+        btnUpdateBlock.setToolTipText("Update Block Name");
+        btnUpdateBlock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateBlock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateBlockActionPerformed(evt);
+            }
+        });
+        jPanel10.add(btnUpdateBlock);
+        btnUpdateBlock.setBounds(680, 400, 220, 30);
+
+        btnUpdateService.setText("Update Service");
+        btnUpdateService.setToolTipText("Update Service");
+        btnUpdateService.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateServiceActionPerformed(evt);
+            }
+        });
+        jPanel10.add(btnUpdateService);
+        btnUpdateService.setBounds(210, 310, 220, 30);
+
+        lblServiceError.setForeground(new java.awt.Color(102, 102, 0));
+        lblServiceError.setText("Service Already Exist");
+        jPanel10.add(lblServiceError);
+        lblServiceError.setBounds(160, 210, 150, 30);
+
+        btnUpdateCharacteristic.setText("Update Characteristic");
+        btnUpdateCharacteristic.setToolTipText("Update Characteristic");
+        btnUpdateCharacteristic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateCharacteristic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateCharacteristicActionPerformed(evt);
+            }
+        });
+        jPanel10.add(btnUpdateCharacteristic);
+        btnUpdateCharacteristic.setBounds(220, 160, 220, 30);
+
+        btnUpdateArea.setText("Update Area Name");
+        btnUpdateArea.setToolTipText("Update Area Name");
+        btnUpdateArea.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateAreaActionPerformed(evt);
+            }
+        });
+        jPanel10.add(btnUpdateArea);
+        btnUpdateArea.setBounds(670, 160, 220, 30);
+
+        lblCharacteristicError.setForeground(new java.awt.Color(102, 102, 0));
+        lblCharacteristicError.setText("Property Characteristic Already Exist");
+        jPanel10.add(lblCharacteristicError);
+        lblCharacteristicError.setBounds(160, 60, 200, 30);
+
+        lblAreaError.setForeground(new java.awt.Color(102, 102, 0));
+        lblAreaError.setText("Area Already Exist");
+        jPanel10.add(lblAreaError);
+        lblAreaError.setBounds(640, 60, 200, 30);
+
+        cmbCharacteristics.setToolTipText("Select Characteristic");
+        cmbCharacteristics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCharacteristicsActionPerformed(evt);
+            }
+        });
+        jPanel10.add(cmbCharacteristics);
+        cmbCharacteristics.setBounds(180, 90, 300, 30);
+
+        jLabel11.setText("New Characteristic Name");
+        jPanel10.add(jLabel11);
+        jLabel11.setBounds(30, 120, 150, 30);
+
+        jLabel18.setText("Select Service");
+        jPanel10.add(jLabel18);
+        jLabel18.setBounds(80, 240, 90, 30);
+
+        cmbServices.setToolTipText("Select Service");
+        cmbServices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbServicesActionPerformed(evt);
+            }
+        });
+        jPanel10.add(cmbServices);
+        cmbServices.setBounds(180, 240, 300, 30);
+
+        cmbPropertyType.setToolTipText("Select Property Type");
+        cmbPropertyType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPropertyTypeActionPerformed(evt);
+            }
+        });
+        jPanel10.add(cmbPropertyType);
+        cmbPropertyType.setBounds(180, 390, 300, 30);
+
+        jLabel19.setText("Select Property Type");
+        jPanel10.add(jLabel19);
+        jLabel19.setBounds(60, 390, 120, 30);
+
+        cmbArea.setToolTipText("Select Area");
+        cmbArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAreaActionPerformed(evt);
+            }
+        });
+        jPanel10.add(cmbArea);
+        cmbArea.setBounds(640, 90, 310, 30);
+
+        jLabel20.setText("Select Area");
+        jPanel10.add(jLabel20);
+        jLabel20.setBounds(570, 90, 70, 30);
+
+        cmbBlock.setToolTipText("Select Block");
+        cmbBlock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbBlockActionPerformed(evt);
+            }
+        });
+        jPanel10.add(cmbBlock);
+        cmbBlock.setBounds(650, 270, 300, 30);
+
+        jLabel21.setText("Select Block");
+        jPanel10.add(jLabel21);
+        jLabel21.setBounds(570, 270, 70, 30);
+        jPanel10.add(jSeparator1);
+        jSeparator1.setBounds(0, 50, 1040, 10);
+        jPanel10.add(jSeparator2);
+        jSeparator2.setBounds(0, 200, 1040, 10);
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel10.add(jSeparator3);
+        jSeparator3.setBounds(520, 50, 10, 460);
+        jPanel10.add(jSeparator4);
+        jSeparator4.setBounds(0, 350, 520, 10);
+
+        jLabel3.setText("Price Per Ft");
+        jPanel10.add(jLabel3);
+        jLabel3.setBounds(570, 350, 80, 30);
+
+        spinPrice.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1000), Integer.valueOf(1000), null, Integer.valueOf(1000)));
+        jPanel10.add(spinPrice);
+        spinPrice.setBounds(650, 350, 100, 30);
+
+        jLabel2.setText("Load Shedding Hours");
+        jPanel10.add(jLabel2);
+        jLabel2.setBounds(760, 350, 140, 30);
+
+        spinLoadShed.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
+        jPanel10.add(spinLoadShed);
+        spinLoadShed.setBounds(900, 350, 50, 30);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1043, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 1043, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 505, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbAreaForBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAreaForBlockActionPerformed
+        // TODO add your handling code here:
+        fillBlockDropDown();
+    }//GEN-LAST:event_cmbAreaForBlockActionPerformed
+
+    private void cmbBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBlockActionPerformed
+        // TODO add your handling code here:
+        int index = cmbBlock.getSelectedIndex();
+        if (index >= 0) {
+            Block block = blockList.get(index);
+            txtBlock.setText(block.getBlockName());
+            spinLoadShed.setValue(block.getNoOfHourOfLoadShed());
+            spinPrice.setValue(block.getPricePerFt());
+        }
+    }//GEN-LAST:event_cmbBlockActionPerformed
+
+    private void cmbAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAreaActionPerformed
+        // TODO add your handling code here:
+        if (cmbArea.getSelectedIndex() >= 0) {
+            txtArea.setText(cmbArea.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_cmbAreaActionPerformed
+
+    private void cmbPropertyTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPropertyTypeActionPerformed
+        // TODO add your handling code here:
+        if (cmbPropertyType.getSelectedIndex() >= 0) {
+            txtPropertyType.setText(cmbPropertyType.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_cmbPropertyTypeActionPerformed
+
+    private void cmbServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbServicesActionPerformed
+        // TODO add your handling code here:
+        if (cmbServices.getSelectedIndex() >= 0) {
+            txtService.setText(cmbServices.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_cmbServicesActionPerformed
+
+    private void cmbCharacteristicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCharacteristicsActionPerformed
+        // TODO add your handling code here:
+        if (cmbCharacteristics.getSelectedIndex() >= 0) {
+            txtCharacteristic.setText(cmbCharacteristics.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_cmbCharacteristicsActionPerformed
+
+    private void btnUpdateCharacteristicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCharacteristicActionPerformed
+        // TODO add your handling code here:
+        updateCharacteristic();
+    }//GEN-LAST:event_btnUpdateCharacteristicActionPerformed
+
+    private void btnUpdateServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateServiceActionPerformed
+        // TODO add your handling code here:
+        updateService();
+    }//GEN-LAST:event_btnUpdateServiceActionPerformed
+
+    private void btnUpdatePropertyTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatePropertyTypeActionPerformed
+        // TODO add your handling code here:
+        updatePropertyType();
+    }//GEN-LAST:event_btnUpdatePropertyTypeActionPerformed
+
+    private void btnUpdateAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAreaActionPerformed
+        // TODO add your handling code here:
+        updateArea();
+    }//GEN-LAST:event_btnUpdateAreaActionPerformed
+
+    private void btnUpdateBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateBlockActionPerformed
+        // TODO add your handling code here:
+        updateBlock();
+    }//GEN-LAST:event_btnUpdateBlockActionPerformed
+
+    private void txtCharacteristicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCharacteristicActionPerformed
+        // TODO add your handling code here:
+        btnUpdateCharacteristicActionPerformed(evt);
+    }//GEN-LAST:event_txtCharacteristicActionPerformed
+
+    private void txtServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtServiceActionPerformed
+        // TODO add your handling code here:
+        btnUpdateServiceActionPerformed(evt);
+    }//GEN-LAST:event_txtServiceActionPerformed
+
+    private void txtPropertyTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPropertyTypeActionPerformed
+        // TODO add your handling code here:
+        btnUpdatePropertyTypeActionPerformed(evt);
+    }//GEN-LAST:event_txtPropertyTypeActionPerformed
+
+    private void txtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaActionPerformed
+        // TODO add your handling code here:
+        btnUpdateAreaActionPerformed(evt);
+    }//GEN-LAST:event_txtAreaActionPerformed
+
+    private void txtBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBlockActionPerformed
+        // TODO add your handling code here:
+        txtBlock.nextFocus();
+    }//GEN-LAST:event_txtBlockActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUpdateArea;
+    private javax.swing.JButton btnUpdateBlock;
+    private javax.swing.JButton btnUpdateCharacteristic;
+    private javax.swing.JButton btnUpdatePropertyType;
+    private javax.swing.JButton btnUpdateService;
+    private javax.swing.JComboBox cmbArea;
+    private javax.swing.JComboBox cmbAreaForBlock;
+    private javax.swing.JComboBox cmbBlock;
+    private javax.swing.JComboBox cmbCharacteristics;
+    private javax.swing.JComboBox cmbPropertyType;
+    private javax.swing.JComboBox cmbServices;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblAreaError;
+    private javax.swing.JLabel lblBlockError;
+    private javax.swing.JLabel lblCharacteristicError;
+    private javax.swing.JLabel lblPropertyError;
+    private javax.swing.JLabel lblServiceError;
+    private javax.swing.JSpinner spinLoadShed;
+    private javax.swing.JSpinner spinPrice;
+    private javax.swing.JTextField txtArea;
+    private javax.swing.JTextField txtBlock;
+    private javax.swing.JTextField txtCharacteristic;
+    private javax.swing.JTextField txtPropertyType;
+    private javax.swing.JTextField txtService;
+    // End of variables declaration//GEN-END:variables
+
+    private void updateCharacteristic() {
+        // TODO add your handling code here:
+        int index = cmbCharacteristics.getSelectedIndex();
+        if (index >= 0) {
+            String text = txtCharacteristic.getText();
+            if (!validation.isEmpty(text)) {
+                PropertyCharacteristic characteristic = characteristicList.get(index);
+                characteristic.setCharacteristicName(text);
+                if (propertyManager.updateCharacteristic(characteristic)) {
+                    dialog.show("Characteristic Updated Successfully");
+                    lblCharacteristicError.setText("");
+                    txtCharacteristic.setText("");
+                    fillCharacteristicDropDown();
+                } else {
+                    showCharacteristicLabel("Characteristic Already Exists", 0);
+                }
+            } else {
+                showCharacteristicLabel("Please Enter Characteristic", 0);
+            }
+        } else {
+            showCharacteristicLabel("Please Enter Characteristic", 0);
+        }
+    }
+
+    private void updateService() {
+        int index = cmbServices.getSelectedIndex();
+        if (index >= 0) {
+            String text = txtService.getText();
+            if (!validation.isEmpty(text)) {
+                PropertyService service = sercviceList.get(index);
+                service.setServiceName(text);
+                if (propertyManager.updateService(service)) {
+                    dialog.show("Service Updated Successfully");
+                    lblServiceError.setText("");
+                    txtService.setText("");
+                    fillServiceDropDown();
+                } else {
+                    showServiceLabel("Service Already Exists", 0);
+                }
+            } else {
+                showServiceLabel("Please Enter Service", 0);
+            }
+        } else {
+            showServiceLabel("Please Enter Service", 0);
+        }
+    }
+
+    private void updatePropertyType() {
+        int index = cmbPropertyType.getSelectedIndex();
+        if (index >= 0) {
+            String text = txtPropertyType.getText();
+            if (!validation.isEmpty(text)) {
+                PropertyType type = typeList.get(index);
+                type.setTypeName(text);
+                if (propertyManager.updateType(type)) {
+                    dialog.show("Property Type Updated Successfully");
+                    lblPropertyError.setText("");
+                    txtPropertyType.setText("");
+                    fillTypeDropDown();
+                } else {
+                    showPropertyLabel("Property Type Already Exists", 0);
+
+                }
+            } else {
+                showPropertyLabel("Please Enter Property Type", 0);
+            }
+        } else {
+            showPropertyLabel("Please Enter Property Type", 0);
+        }
+    }
+
+    private void updateArea() {
+        int index = cmbArea.getSelectedIndex();
+        if (index >= 0) {
+            String text = txtArea.getText();
+            if (!validation.isEmpty(text)) {
+                Area area = areaList.get(index);
+                area.setAreaName(text);
+                if (propertyManager.updateArea(area)) {
+                    dialog.show("Area Updated Successfully");
+                    lblAreaError.setText("");
+                    txtArea.setText("");
+                    fillAreaDropDown();
+                } else {
+                    showAreaLabel("Area Already Exists", 0);
+                }
+            } else {
+                showAreaLabel("Please Enter Area", 0);
+            }
+        } else {
+            showAreaLabel("Please Enter Area", 0);
+        }
+    }
+
+    private void updateBlock() {
+        int index = cmbBlock.getSelectedIndex();
+        if (index >= 0) {
+            String text = txtBlock.getText();
+            if (!validation.isEmpty(text)) {
+                Block block = blockList.get(index);
+                block.setBlockName(text);
+                block.setNoOfHourOfLoadShed((int) spinLoadShed.getValue());
+                block.setPricePerFt((int) spinPrice.getValue());
+                block.setAreaId(areaList.get(index).getAreaId());
+                if (propertyManager.updateBlock(block)) {
+                    dialog.show("Block Updated Successfully");
+                    lblBlockError.setText("");
+                    txtBlock.setText("");
+                    fillBlockDropDown();
+                } else {
+                    showBlockLabel("Block Already Exists", 0);
+                }
+            } else {
+                showBlockLabel("Please Enter Block", 0);
+            }
+        } else {
+            showBlockLabel("Please Select Area", 0);
+        }
+    }
+
+    private void fillAreaDropDown() {
+        areaList = propertyManager.getAreas();
+        cmbArea.removeAllItems();
+        cmbAreaForBlock.removeAllItems();
+        if (areaList.size() > 0) {
+            Area area;
+            enableBlockPortion();
+            enableAreaPortion();
+            lblAreaError.setText("");
+            for (int i = 0; i < areaList.size(); i++) {
+                area = areaList.get(i);
+                cmbArea.addItem(area.getAreaName());
+                cmbAreaForBlock.addItem(area.getAreaName());
+            }
+            cmbAreaForBlock.setSelectedIndex(0);
+        } else {
+            disableAreaPortion();
+            disableBlockPortion();
+        }
+    }
+
+    private void fillTypeDropDown() {
+        typeList = propertyManager.getPropertyTypes();
+        cmbPropertyType.removeAllItems();
+        if (typeList.size() > 0) {
+            PropertyType type;
+            enableTypePortion();
+            for (int i = 0; i < typeList.size(); i++) {
+                type = typeList.get(i);
+                cmbPropertyType.addItem(type.getTypeName());
+            }
+        } else {
+            disableTypePortion();
+        }
+    }
+
+    private void fillCharacteristicDropDown() {
+        characteristicList = propertyManager.getPropertyCharacteristics();
+        cmbCharacteristics.removeAllItems();
+        if (characteristicList.size() > 0) {
+            PropertyCharacteristic characteristic;
+            enableCharacteristicPortion();
+            for (int i = 0; i < characteristicList.size(); i++) {
+                characteristic = characteristicList.get(i);
+                cmbCharacteristics.addItem(characteristic.getCharacteristicName());
+            }
+        } else {
+            disableCharacteristicPortion();
+        }
+    }
+
+    private void fillServiceDropDown() {
+        sercviceList = propertyManager.getPropertyServices();
+        cmbServices.removeAllItems();
+        if (sercviceList.size() > 0) {
+            PropertyService service;
+            enableServicePortion();
+            for (int i = 0; i < sercviceList.size(); i++) {
+                service = sercviceList.get(i);
+                cmbServices.addItem(service.getServiceName());
+            }
+        } else {
+            disableServicePortion();
+        }
+    }
+
+    private void fillBlockDropDown() {
+        int index = cmbAreaForBlock.getSelectedIndex();
+        if (index >= 0) {
+            blockList = propertyManager.getBlocksOfArea(areaList.get(index).getAreaId());
+            cmbBlock.removeAllItems();
+            if (blockList.size() > 0) {
+                Block block;
+                enableBlockPortion();
+                for (int i = 0; i < blockList.size(); i++) {
+                    block = blockList.get(i);
+                    cmbBlock.addItem(block.getBlockName());
+                }
+            } else {
+                disableBlockPortion();
+            }
+        } else {
+            disableBlockPortion();
+        }
+    }
+
+    public void fillAllDropDownValues() {
+        fillAreaDropDown();
+        fillBlockDropDown();
+        fillCharacteristicDropDown();
+        fillServiceDropDown();
+        fillTypeDropDown();
+    }
+
+}
